@@ -124,6 +124,11 @@ You may use your <path/to>/ansible/projects/openbmc directory as is for docker v
   
 :rotating_light: Alert: You should re-run **make docker-compose-build** for any change in your **docker-compose.yml.j2** file
   
+#### check TOWER environment variable
+You may need to edit your TOWER variables
+![alt text](doc/awx_tower_vars.png)
+
+
 #### run your ansible role
 From a terminal, run the ansible role command:
 
