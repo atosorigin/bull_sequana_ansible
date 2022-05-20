@@ -20,7 +20,9 @@ Ansible playbooks can be used as is with following prerequisites:
 - [How to manage AWX encrypted passwords](#howto_manage_ansible_password)
 - [How to manage Ansible encrypted passwords](#howto_manage_awx_password)
 - [How to configure your proxy](#howto_proxy)
+- [How to use an ansible Vault](#howto_vault)
 - [How to configure your technical states file path](#howto_ts)
+- [How to change certificat on AWX server](#howto_cert)
 - [Warning for updates](#warning_updates)
 - [More help](#more_help)
 - [Support](#support)
@@ -92,6 +94,13 @@ from this repository, just clone:
 git clone https://github.com/atosorigin/bull_sequanaedge_awx.git
 ```
 
+### start your awx
+Run AWX from **</path/to/>awx**  
+` make docker-compose-build `  
+` make docker-compose `
+
+![alt text](doc/awx_make_docker_compose.png)
+
 ### create your superuser
 As indicated in the documentation, create your first super user:  
 `docker exec -ti tools_awx_1 awx-manage createsuperuser`  
@@ -99,7 +108,7 @@ As indicated in the documentation, create your first super user:
 
 :computer: INFO: See https://github.com/ansible/awx/blob/devel/tools/docker-compose/README.md#create-an-admin-user
   
-You should be able to login with your new superuser  
+At this point, you should be able to login with your new superuser  
 
 ![alt text](doc/awx_login.png)
 
@@ -116,12 +125,6 @@ You may use your <path/to>/ansible/projects/openbmc directory as is for docker v
 - SH  : ` add_awx_playbooks_bullsequanash.yml `
 
 ![alt text](doc/awx_install_playbooks.png)
-
-
-` make docker-compose-build `
-` make docker-compose `
-
-![alt text](doc/awx_make_docker_compose.png)
 
 :rotating_light: Alert:You should re-run **make docker-compose-build** for any change in your **docker-compose.yml.j2** file
 
@@ -358,10 +361,10 @@ Default is :
 - /usr/share/ansible/plugins/module_utils ==> module utils  
 
 Another option is to create symbolic links :
-From your </path/to>/ansible/plugins/<modules or module_utils>/remote_management :
-`ln -s atos_openbmc.py /usr/share/ansible/plugins/modules/remote_management/atos_openbmc.py`
+From your </path/to>/ansible/plugins/<modules/or/module_utils>/remote_management :  
+`ln -s atos_openbmc.py /usr/share/ansible/plugins/modules/remote_management/atos_openbmc.py`  
 `ln -s atos_openbmc_utils.py /usr/share/ansible/plugins/module_utils/remote_management/atos_openbmc_utils.py`
-
+  
 :warning: Care to create the complete hierarchy in targeted directory /usr/share/ansible/plugins if needed
 
 Check your 2 module directories through your **ansible --version** command :  
@@ -573,16 +576,7 @@ docker login
 docker run hello-world
 ```
 
-## <a name="howto_nmap"></a>how to use the nmap plugin inventory for redfish 
-### how to detect nmap hosts
-
-`./get_redfish_nmap_hosts.sh`
-
-*you can copy/paste detected hosts in your AWX inventory or your ansible 'hosts' file*
-
-*you should adapt each BMC user/password*
-
-## how to use an ansible Vault
+## <a name="howto_vault"></a>How to use an ansible Vault
 1. generate your encrypted password: See [How to manage encrypted passwords](#howto_manage_ansible_password)
 2. run your playbook
 `ansible-playbook --vault-id root_password@prompt projects/openbmc/inventory/get_sensors.yml`
@@ -719,12 +713,12 @@ you can now generate as many encrypted password variables as needed and play you
 :thumbsup: Best Practice: Vault passwords could be retrieved from python script. For more information See https://docs.ansible.com/ansible/latest/user_guide/vault.html
 
 ### remove an encrypted password
-1. edit the file <install_dir>/ansible/vars/passwords.yml  
+1. edit the file </path/to>/ansible/vars/passwords.yml  
 2. remove the password entry as desired  
 ![alt text](doc/remove_password.png)
 
 ### clean a corrupted password file
-1. edit the file <install_dir>/ansible/vars/passwords.yml  
+1. edit the file </path/to>/ansible/vars/passwords.yml  
 2. check that each line has the following structure  
   
 a_named_variable: !vault |  
@@ -738,14 +732,12 @@ a_named_variable: !vault |
 3. remove the lines that are corrupted  
 ![alt text](doc/corrupted_passwords.png)
 
-
-
 ## <a name="howto_manage_awx_password"></a>How to manage AWX encrypted vault and passwords
 ### generate an AWX(Ansible) native encrypted password
 1. open a terminal on the host
 2. execute the following script with the name of your password and the real password you want to encrypt  
   
-`./generate_encrypted_password_for_AWX.sh --name your_password_name your_real_password_to_encrypt`  
+`./generate_encrypted_password.sh --name your_password_name your_real_password_to_encrypt`  
 
 ![alt text](doc/generate_password_result.png)  
 
