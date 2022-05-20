@@ -21,8 +21,9 @@ git clone "https://github.com/atosorigin/bull_sequana_ansible.git"
 cd bull_sequana_ansible
 ```
 
-## and install 
+## and install playbooks
 
-- [BullSequana Edge/SH ansible playbooks](./ansible/readme.md)
-
+[BullSequana Edge/SH ansible install documentation](./ansible/readme.md)
+  
+## More about you Bull Sequana Edge
 [![BullSequana Edge/SH ansible playbooks](https://img.youtube.com/vi/5RTAYFUG6mQ/0.jpg)](https://www.youtube.com/watch?v=5RTAYFUG6mQ)

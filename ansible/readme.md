@@ -96,8 +96,8 @@ git clone https://github.com/atosorigin/bull_sequanaedge_awx.git
 
 ### start your awx
 Run AWX from **</path/to/>awx**  
-` make docker-compose-build `  
-` make docker-compose `
+`make docker-compose-build `  
+`make docker-compose `
 
 ![alt text](doc/awx_make_docker_compose.png)
 
@@ -112,21 +112,25 @@ At this point, you should be able to login with your new superuser
 
 ![alt text](doc/awx_login.png)
 
-### install your playbooks
+### install your AWX playbooks
+#### map your docker volumes
 You may use your <path/to>/ansible/projects/openbmc directory as is for docker volume mapping or you can copy it elsewhere.
-
+  
 :warning: Warning: Care to **add and map** your physical directory to the docker volume **/var/lib/awx/projects** in your **docker-compose.yml.j2** file :
 - Edge: **<path/to>/ansible/projects/openbmc** 
 - SH: **<path/to>/ansible/projects/redfish** 
-
+  
 ![alt text](doc/awx_add_volumes.png)
+  
+:rotating_light: Alert: You should re-run **make docker-compose-build** for any change in your **docker-compose.yml.j2** file
+  
+#### run your ansible role
+From a terminal, run the ansible role command:
 
-- Edge: ` add_awx_playbooks_bullsequanaedge.yml `
-- SH  : ` add_awx_playbooks_bullsequanash.yml `
+- Edge: `ansible-playbook add_awx_playbooks_bullsequanaedge.yml `
+- SH  : `ansible-playbook add_awx_playbooks_bullsequanash.yml `
 
 ![alt text](doc/awx_install_playbooks.png)
-
-:rotating_light: Alert:You should re-run **make docker-compose-build** for any change in your **docker-compose.yml.j2** file
 
 :computer: Info: Any mistake while loading your playbooks ? Just remove your data
 
@@ -551,6 +555,10 @@ Check your proxy configuration in /etc/profile.d/proxy.sh :
 You can check while installating and starting your containers:
 
 ![alt text](doc/awx_check_profile_proxy.png)
+
+### AWX proxy
+If you have a proxy, declare it in AWX / Settings / Job Settings / Extra Environment Variables
+![alt text](doc/awx_proxy.png)
 
 ### docker proxy
 1. create docker.service.d
