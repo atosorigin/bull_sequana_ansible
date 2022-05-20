@@ -93,24 +93,24 @@ git clone https://github.com/atosorigin/bull_sequanaedge_awx.git
 ```
 
 ### create your superuser
-As indicated in the documentation, create your first super user:
-`docker exec -ti tools_awx_1 awx-manage createsuperuser`
-![alt text](doc/awx_create_superuser.png)
+As indicated in the documentation, create your first super user:  
+`docker exec -ti tools_awx_1 awx-manage createsuperuser`  
+![alt text](doc/awx_create_superuser.png)  
 
 :computer: INFO: See https://github.com/ansible/awx/blob/devel/tools/docker-compose/README.md#create-an-admin-user
   
-You should be able to login with your new superuser
+You should be able to login with your new superuser  
 
-![alt text](doc/awx_login.png){height=20px}
+![alt text](doc/awx_login.png)
 
 ### install your playbooks
-You may use your "<path/to>/ansible/projects/openbmc" directory as is for docker volume mapping or you can copy it elsewhere.
+You may use your <path/to>/ansible/projects/openbmc directory as is for docker volume mapping or you can copy it elsewhere.
 
 :warning: Warning: Care to **add and map** your physical directory to the docker volume **/var/lib/awx/projects** in your **docker-compose.yml.j2** file :
 - Edge: **<path/to>/ansible/projects/openbmc** 
 - SH: **<path/to>/ansible/projects/redfish** 
 
-![alt text](doc/awx_add_volume.png)
+![alt text](doc/awx_add_volumes.png)
 
 - Edge: ` add_awx_playbooks_bullsequanaedge.yml `
 - SH  : ` add_awx_playbooks_bullsequanash.yml `
@@ -143,7 +143,7 @@ You may copy your plugins in the shared ansible module directory.
 
 :warning: Warning: You should re-run **make docker-compose-build** if you change the **docker-compose.yml.j2** file
 
-` make docker-compose-build `
+` make docker-compose-build `  
 ` make docker-compose `
 
 ![alt text](doc/awx_make_docker_compose.png)
@@ -342,10 +342,10 @@ If you already have an Ansible installation, you can just install ansible playbo
 `yum install python3`  
 2. install ansible  
 `pip3 install ansible`  
-3. optionnaly if you use Ansible vault:  
+3. optionnaly if you need an Ansible vault:  
 `pip3 install pycryptodome`  
 `pip3 install ansible-vault`  
-4. optionnaly if you use Ansible role installation:  
+4. optionnaly install AWX CLI if you use Ansible role installation:  
 ```sh
 pip3 install awxkit
 awx --help
@@ -358,7 +358,7 @@ Default is :
 - /usr/share/ansible/plugins/module_utils ==> module utils  
 
 Another option is to create symbolic links :
-From your <install_dir>/ansible/plugins/<modules or module_utils>/remote_management :
+From your </path/to>/ansible/plugins/<modules or module_utils>/remote_management :
 `ln -s atos_openbmc.py /usr/share/ansible/plugins/modules/remote_management/atos_openbmc.py`
 `ln -s atos_openbmc_utils.py /usr/share/ansible/plugins/module_utils/remote_management/atos_openbmc_utils.py`
 
@@ -367,7 +367,7 @@ From your <install_dir>/ansible/plugins/<modules or module_utils>/remote_managem
 Check your 2 module directories through your **ansible --version** command :  
 `ansible --version`  
 
-As explained in the documentation, you should force python3 interpreter:  
+As explained in the documentation, you may have to force python3 interpreter for old ansible version:  
 ![alt text](doc/ansible_python3_interpreter.png)
 
 ### how to add a host in ansible inventory
