@@ -99,27 +99,39 @@ As indicated in the documentation, create your first super user:
 
 :computer: INFO: See https://github.com/ansible/awx/blob/devel/tools/docker-compose/README.md#create-an-admin-user
   
-You should be able to login
+You should be able to login with your new superuser
 
-![alt text](doc/awx_login.png)
+![alt text](doc/awx_login.png){height=20px}
 
 ### install your playbooks
-You may use the "ansible/projects/openbmc" directory as is or you can copy it elsewhere.
+You may use your "<path/to>/ansible/projects/openbmc" directory as is for docker volume mapping or you can copy it elsewhere.
 
-![alt text](doc/awx_install_playbooks.png)
-
-:warning: Warning: Care to add the correct volume in your **docker-compose.yml.j2** file :
-- Edge: **projects/openbmc** directory
-- SH: **projects/redfish** directory
+:warning: Warning: Care to **add and map** your physical directory to the docker volume **/var/lib/awx/projects** in your **docker-compose.yml.j2** file :
+- Edge: **<path/to>/ansible/projects/openbmc** 
+- SH: **<path/to>/ansible/projects/redfish** 
 
 ![alt text](doc/awx_add_volume.png)
 
-:rotating_light: Alert:You should re-run **docker-compose-build** for any change in your **docker-compose.yml.j2** file
+- Edge: ` add_awx_playbooks_bullsequanaedge.yml `
+- SH  : ` add_awx_playbooks_bullsequanash.yml `
+
+![alt text](doc/awx_install_playbooks.png)
+
 
 ` make docker-compose-build `
 ` make docker-compose `
 
 ![alt text](doc/awx_make_docker_compose.png)
+
+:rotating_light: Alert:You should re-run **make docker-compose-build** for any change in your **docker-compose.yml.j2** file
+
+:computer: Info: Any mistake while loading your playbooks ? Just remove your data
+
+![alt text](doc/awx_remove_data.png)
+
+:computer: Info: Between these 2 steps is the opportunity to change your logo
+
+![alt text](doc/awx_logo_change.png)
 
 ### install your plugins
 *Edge only: plugins is NOT needed for BullSequanaSH systems*
@@ -129,7 +141,7 @@ You may copy your plugins in the shared ansible module directory.
 
 ![alt text](doc/awx_add_volume.png)
 
-:warning: Warning: You should re-run **docker-compose-build** if you change the **docker-compose.yml.j2** file
+:warning: Warning: You should re-run **make docker-compose-build** if you change the **docker-compose.yml.j2** file
 
 ` make docker-compose-build `
 ` make docker-compose `
@@ -138,11 +150,11 @@ You may copy your plugins in the shared ansible module directory.
 
 ### change your inventory variables 
 
-:warning: Warning : default variables are defined in **ansible/projects/<openbmc or redfish>/vars/external_vars**
+You should change the *Variables* in **external_vars.yml** mapped to your project volume.
 
-You should change the *Variables* in the file <target_dir>/<openbmc or redfish>/vars/external_vars.yml declared in your volume.
+:warning: Warning : default variables are defined in **<path/to>/ansible/projects/<openbmc or redfish>/vars/external_vars**
 
-You may add/change *Variables*  in AWX inventory variables, if you remove it from your vars/external_vars.yml file.
+You may add/change *Variables* in AWX inventory variables. youare advised to remove it from your vars/external_vars.yml file to avoid variable duplication.
 
 
 The following chapter explains the meaning of all variables.
