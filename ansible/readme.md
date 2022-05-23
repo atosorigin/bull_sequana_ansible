@@ -17,12 +17,14 @@ Ansible playbooks can be used as is with following prerequisites:
 - [BullSequana Edge/SH Playbooks](#playbooks)
 - [What to do first on AWX](#what_awx)
 - [What to do first on Ansible](#what_ansible)
-- [How to manage AWX encrypted passwords](#howto_manage_ansible_password)
-- [How to manage Ansible encrypted passwords](#howto_manage_awx_password)
+- [how to add a host in ansible inventory](#how_add_host)
+- [How to export ansible inventory hosts file to awx inventory](#howto_export_inventory)
 - [How to configure your proxy](#howto_proxy)
 - [How to use an ansible Vault](#howto_vault)
-- [How to configure your technical states file path](#howto_ts)
 - [How to change certificat on AWX server](#howto_cert)
+- [How to manage AWX encrypted passwords](#howto_manage_ansible_password)
+- [How to configure your technical states file path](#howto_ts)
+- [How to manage Ansible encrypted passwords](#howto_manage_ansible_password)
 - [Warning for updates](#warning_updates)
 - [More help](#more_help)
 - [Support](#support)
@@ -31,7 +33,7 @@ Ansible playbooks can be used as is with following prerequisites:
 
 ## <a name="playbooks"></a>BullSequana Edge/SH Playbooks
 - `Activate firmware updates`: Activate BullSequana Edge/SH uploaded firmwares - Do NOT upload firmwares (need to be planed before)
-- `Evaluate firmware update from Technical State`:Evaluate firmware update from Atos specific Technical State file (comparaison)
+- `Evaluate firmware update from Technical State`: Evaluate firmware update from Atos specific Technical State file (comparaison)
 - `Delete firmware image`: Delete a firmware image by id
 - `Firmware inventory` - Active: Get firmware inventory in "Active" state
 - `Firmware inventory - Ready`: Get firmware inventory in "Ready" state
@@ -347,8 +349,8 @@ Bull Sequana Edge/SH Ansible playbooks contains:
 2. One Inventory Plugin for nmap detection
 3. One Callback Plugin for better CLI stdout UX 
 
-### how to install ansible
-#### <a name="install_locally"></a>install ansible locally
+### <a name="install_locally"></a>how to install ansible
+#### install your prerequisites
 If you already have an Ansible installation, you can just install ansible playbooks and plugins:  
 1. install python3 as a prerequisite   
 `yum install python3`  
@@ -363,18 +365,26 @@ pip3 install awxkit
 awx --help
 ```
 
-### install your plugins
+#### install your playbooks
+From a terminal, run the ansible role command:
+
+- Edge: `ansible-playbook add_awx_playbooks_bullsequanaedge.yml `
+- SH  : `ansible-playbook add_awx_playbooks_bullsequanash.yml `
+
+![alt text](doc/awx_install_playbooks.png)
+
+#### install your plugins
 Copy your plugins in the shared ansible modules directory.  
 Default is :  
 - /usr/share/ansible/plugins/modules ==> modules  
 - /usr/share/ansible/plugins/module_utils ==> module utils  
 
-Another option is to create symbolic links :
-From your </path/to>/ansible/plugins/<modules/or/module_utils>/remote_management :  
-`ln -s atos_openbmc.py /usr/share/ansible/plugins/modules/remote_management/atos_openbmc.py`  
-`ln -s atos_openbmc_utils.py /usr/share/ansible/plugins/module_utils/remote_management/atos_openbmc_utils.py`
+Another option is to create symbolic links to your installed files:
+From your </path/to>/ansible/plugins/<modules/or/module_utils> :  
+`ln -s /var/bull_ansible/ansible/plugins/modules/atos_openbmc.py /usr/share/ansible/plugins/modules/atos_openbmc.py`  
+`ln -s /var/bull_ansible/ansible/plugins/module_utils/atos_openbmc_utils.py /usr/share/ansible/plugins/module_utils/atos_openbmc_utils.py`
   
-:warning: Care to create the complete hierarchy in targeted directory /usr/share/ansible/plugins if needed
+:warning: Care to create the complete hierarchy in module (module_utils) directory /usr/share/ansible/plugins if needed
 
 Check your 2 module directories through your **ansible --version** command :  
 `ansible --version`  
@@ -382,8 +392,8 @@ Check your 2 module directories through your **ansible --version** command :
 As explained in the documentation, you may have to force python3 interpreter for old ansible version:  
 ![alt text](doc/ansible_python3_interpreter.png)
 
-### how to add a host in ansible inventory
-by default, your ansible hosts are available in 
+## <a name="how_add_host"></a>How to add a host in ansible inventory
+By default, your ansible hosts are available in 
 1. edit /etc/ansible/hosts file
 2. add your ip addresses or hostnames followed by baseuri and username variables
 ```
@@ -393,7 +403,7 @@ by default, your ansible hosts are available in
 ```
 3. generate an encrypted password for your password variable
 4. add your encrypted password variable 
-`password='{{ your_encryoted_variable }}'`
+`password='{{ your_encrypted_variable }}'`
 
 ![alt text](doc/host_password.png)
 
@@ -535,7 +545,6 @@ ex: [root@awx power] ansible-playbook --limit=openbmc -e "username=root password
 ```yml
 ansible-playbook set_rsyslog_server_ip.yml
 ansible-playbook set_rsyslog_server_port.yml
-
 ```
 
 ex: [root@awx logs]# ansible-playbook set_rsyslog_server_port.yml
@@ -579,9 +588,9 @@ Environment="HTTPS_PROXY=<ip>:<port>"
 Environment="NO_PROXY=localhost,127.0.0.1,<localaddress>,<.localdomain.com>,<your proxy address>,<your DNS address>"
 ```
 :computer: More on https://bobcares.com/blog/docker-error-response-from-daemon-i-o-timeout/
-
-### check your docker login
-For docker installation, you should be able to login on docker.com
+  
+Check your docker installation & service
+For docker installation, you should be able to login on docker.com to get the docker images (here hello-world image)
 ```sh
 systemctl daemon-reload
 systemctl restart docker
@@ -745,7 +754,7 @@ a_named_variable: !vault |
 3. remove the lines that are corrupted  
 ![alt text](doc/corrupted_passwords.png)
 
-## <a name="howto_manage_awx_password"></a>How to manage AWX encrypted vault and passwords
+## <a name="howto_manage_ansible_password"></a>How to manage AWX encrypted vault and passwords
 ### generate an AWX(Ansible) native encrypted password
 1. open a terminal on the host
 2. execute the following script with the name of your password and the real password you want to encrypt  
