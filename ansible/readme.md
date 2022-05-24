@@ -14,7 +14,8 @@ Ansible playbooks can be used as is with following prerequisites:
   * modules Python : ansible-vault and tzlocal (delivered in "prerequisites" directory)
 
 ## Summary
-- [BullSequana Edge/SH Playbooks](#playbooks)
+- [BullSequana Edge Playbooks](projects/openbmc/readme.md)
+- [BullSequana SH Playbooks](projects/redfish/readme.md)
 - [What to do first on AWX](#what_awx)
 - [What to do first on Ansible](#what_ansible)
 - [how to add a host in ansible inventory](#how_add_host)
@@ -30,51 +31,6 @@ Ansible playbooks can be used as is with following prerequisites:
 - [Support](#support)
 - [LICENSE](#license)
 - [Version](#version)
-
-## <a name="playbooks"></a>BullSequana Edge/SH Playbooks
-- `Activate firmware updates`: Activate BullSequana Edge/SH uploaded firmwares - Do NOT upload firmwares (need to be planed before)
-- `Evaluate firmware update from Technical State`: Evaluate firmware update from Atos specific Technical State file (comparaison)
-- `Delete firmware image`: Delete a firmware image by id
-- `Firmware inventory` - Active: Get firmware inventory in "Active" state
-- `Firmware inventory - Ready`: Get firmware inventory in "Ready" state
-- `BIOS Boot Mode`: Get current BIOS Boot Mode
-- `Set BIOS Boot Mode Regular`: Set BIOS Boot Mode to Regular
-- `Set BIOS Boot Mode Safe`: Set BIOS Boot Mode to Safe
-- `Set BIOS Boot Mode Setup`: Set BIOS Boot Mode to Setup
-- `BIOS Boot Source`: Get current BIOS Boot Source
-- `Set BIOS Boot Source Default`: Set BIOS Boot Source to Default
-- `Set BIOS Boot Source Disk`: Set BIOS Boot Source to Disk
-- `Set BIOS Boot Source Media`: Set BIOS Boot Source to Media
-- `Set BIOS Boot Source Network`: Set BIOS Boot Source to Network
-- `Update firmware from file`: Update Firmware from a file (tar or gzip file)
-- `Update firmwares from Technical State`: Update all Firmwares from technical state (Atos specific TS file)
-- `Upload firmware images from Technical State`: Upload images from technical state (Atos specific TS file) - Do NOT activate firmwares (need to be planed after)
-- `Check critical high and low alarms`: Check critical high and low alarm states from sensors
-- `Check warning high and low alarms`: Check warning high and low alarm states from sensors
-- `State BMC`: Get BullSequana Edge/SH current BMC state
-- `State Chassis`: Get BullSequana Edge/SH current chassis state 
-- `State Host`:Get BullSequana Edge/SH current host state
-- `Get FRU`: Get BullSequana Edge/SH FRU information
-- `Get Network`: Get BullSequana Edge/SH Network information
-- `Get Sensors`: Get BullSequana Edge/SH Sensors information
-- `Get System`: Get BullSequana Edge/SH System information
-- `Check Rsyslog Server IP and Port`: Compare Rsyslog Server IP and Port to variables defined in inventory
-- `Rsyslog Server IP and Port`: Get BullSequana Edge/SH Rsyslog IP and Port
-- `NTP Server Ip and Sync`: NTP Server Ip and Sync
-- `Set Rsyslog Server IP`: Set Rsyslog BullSequana Edge/SH IP
-- `Set Rsyslog Server Port: `Set Rsyslog BullSequana Edge/SH Port
-- `Set NTP Server Ip and Sync`: Set BullSequana Edge/SH Server Ip and Sync
-- `Immediate Shutdown`: Request an Immediate Shutdown
-- `Check BMC alive`: Check if BullSequana Edge/SH device is alive
-- `Check Power Off`: Check if BullSequana Edge/SH host is powered off
-- `Check Power On`: Check if BullSequana Edge/SH host is powered on
-- `Get LED state`: Get BullSequana Edge/SH LED state
-- `Power Cap`: Get BullSequana Edge/SH Power Cap
-- `Orderly Shutdown`: Request an Orderly Shutdown
-- `Power On`: Request a Power On
-- `Reboot`: Reboot the BullSequana Edge/SH BMC
-- `Set LED on/off`: Set BullSequana Edge/SH LED state
-- `Set Power Cap on/off`: Set BullSequana Edge/SH Power cap on/off
 
 ## <a name="what_awx"></a>What to do first on AWX
 
