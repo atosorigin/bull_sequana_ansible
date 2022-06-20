@@ -1,42 +1,11 @@
 ---
 
-- set_fact:
-    tower_host: "{{ lookup('env', 'TOWER_HOST') }}"
+- name: Assure that {{ project_name }} removed
+  awx.awx.project:
+    name: Demo Project
+    state: absent
 
-- name: Find TOWER_HOST
-  assert:
-    that:
-      - tower_host is defined
-      - tower_host != ""        
-    fail_msg: "The variable TOWER_HOST is NOT defined ==> read the readme.md to create your first super user"
-    success_msg: "The superuser TOWER_HOST is defined: {{ tower_host }}"
-  run_once: true
-  
-- set_fact:
-    tower_user: "{{ lookup('env', 'TOWER_USERNAME') }}"
-
-- name: Find TOWER_USERNAME
-  assert:
-    that:
-      - tower_user is defined
-      - tower_user != ""        
-    fail_msg: "The variable TOWER_USERNAME is NOT defined ==> read the readme.md to create your first super user"
-    success_msg: "The superuser TOWER_USERNAME is defined: {{ tower_user }}"
-  run_once: true
-
-- set_fact:
-    tower_pwd: "{{ lookup('env', 'TOWER_PASSWORD') }}"
-
-- name: Find TOWER_PASSWORD
-  assert:
-    that:
-      - tower_pwd is defined
-      - tower_pwd != ""        
-    fail_msg: "The variable TOWER_PASSWORD is NOT defined ==> read the readme.md to create your first super user"
-    success_msg: "The superuser TOWER_PASSWORD is defined: {{ tower_pwd }}"
-  run_once: true
-
-- name: Assure {{ org_name }} organization is present"
+- name: Assure that {{ org_name }} exists
   awx.awx.organization:
     name: "{{ org_name }}"
     state: present

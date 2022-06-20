@@ -60,17 +60,44 @@ Run AWX from **</path/to/>awx**
 ![alt text](doc/awx_make_docker_compose.png)
 
 ### create your superuser
-As indicated in the documentation, create your first super user:  
+As indicated in the documentation, create your first AWX superuser:  
 `docker exec -ti tools_awx_1 awx-manage createsuperuser`  
 ![alt text](doc/awx_create_superuser.png)  
 
 :rotating_light: Critical: See https://github.com/ansible/awx/blob/devel/tools/docker-compose/README.md#create-an-admin-user
-  
+
 At this point, you should be able to login with your new superuser  
 
 ![alt text](doc/awx_login.png)
 
 ### install your AWX playbooks
+
+First, configure your superuser to run the playbooks
+#### Option 1: with tower-cli commands
+```sh
+$ tower-cli config host https://localhost:8043
+$ tower-cli config username root
+$ tower-cli config password root
+```
+#### Option 2:with environment variable
+```sh
+export TOWER_HOST=https://localhost:8043
+export TOWER_USERNAME=root
+export TOWER_PASSWORD=root
+```
+#### Option 3: uncomment in ansible role 
+
+```yaml
+  environment:
+#    TOWER_HOST: "https://localhost:8043"
+#    TOWER_USERNAME: root
+#    TOWER_PASSWORD: root
+    TOWER_INSECURE: true
+    TOWER_VERIFY_SSL: false
+```
+
+:warning: warning: password is in clear: at your own risk
+
 #### map your docker volumes
 You may use your <path/to>/ansible/projects/openbmc directory as is for docker volume mapping or you can copy it elsewhere.
   
