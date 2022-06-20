@@ -22,6 +22,8 @@
     when: powerGracefulRestart_countdown is defined
     run_once: true
 
+  - include_tasks: utils_create_token.yml
+
   - include_tasks: utils_manager_power_graceful_restart.yml    
 
   - include_tasks: wait_until_manager_power_graceful_restart.yml

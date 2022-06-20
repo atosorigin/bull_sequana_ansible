@@ -1,7 +1,7 @@
 ---
 - hosts: all
   connection: local
-  name: Check System Power - Turn on
+  name: Check Host Power - Turn on
   gather_facts: False
   vars_files:
     - vars/external_vars.yml

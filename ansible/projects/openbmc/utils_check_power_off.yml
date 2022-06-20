@@ -1,5 +1,5 @@
 ---
-  - name: Get Host Power
+- name: Check if Host Power is powered Off
     uri:
       url: https://{{ baseuri }}/xyz/openbmc_project/state/host0/attr/CurrentHostState
       method: GET

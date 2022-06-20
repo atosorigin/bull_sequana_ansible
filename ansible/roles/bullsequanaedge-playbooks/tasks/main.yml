@@ -1,4 +1,41 @@
 ---
+
+- set_fact:
+    tower_host: "{{ lookup('env', 'TOWER_HOST') }}"
+
+- name: Find TOWER_HOST
+  assert:
+    that:
+      - tower_host is defined
+      - tower_host != ""        
+    fail_msg: "The variable TOWER_HOST is NOT defined ==> read the readme.md to create your first super user"
+    success_msg: "The superuser TOWER_HOST is defined: {{ tower_host }}"
+  run_once: true
+  
+- set_fact:
+    tower_user: "{{ lookup('env', 'TOWER_USERNAME') }}"
+
+- name: Find TOWER_USERNAME
+  assert:
+    that:
+      - tower_user is defined
+      - tower_user != ""        
+    fail_msg: "The variable TOWER_USERNAME is NOT defined ==> read the readme.md to create your first super user"
+    success_msg: "The superuser TOWER_USERNAME is defined: {{ tower_user }}"
+  run_once: true
+
+- set_fact:
+    tower_pwd: "{{ lookup('env', 'TOWER_PASSWORD') }}"
+
+- name: Find TOWER_PASSWORD
+  assert:
+    that:
+      - tower_pwd is defined
+      - tower_pwd != ""        
+    fail_msg: "The variable TOWER_PASSWORD is NOT defined ==> read the readme.md to create your first super user"
+    success_msg: "The superuser TOWER_PASSWORD is defined: {{ tower_pwd }}"
+  run_once: true
+
 - name: Assure {{ org_name }} organization is present"
   awx.awx.organization:
     name: "{{ org_name }}"
@@ -18,9 +55,9 @@
     organization: "{{ org_name }}"  
     state: present  
 
-- name: Add 10.22.89.186 host
+- name: Add 10.22.89.194 host
   awx.awx.host:
-    name: 10.22.89.186
+    name: 10.22.89.194
     inventory: "{{ inv_name }}"
     state: present
     variables:
@@ -34,8 +71,7 @@
     inventory: "{{ inv_name }}"
     state: present
     hosts: 
-      - 10.22.89.186
-
+      - 10.22.89.194
 
 - name: Find all job templates
   find:
@@ -51,7 +87,9 @@
   ansible.builtin.template:
     src: ../templates/create_job.yml.j2
     dest: roles/bullsequanaedge-playbooks/tasks/create_jobs.yml
+  with_items: find_jobs
   run_once: true
 
 - include: roles/bullsequanaedge-playbooks/tasks/create_jobs.yml
+  run_once: true
   

@@ -8,6 +8,9 @@
     - vars/passwords.yml
   
   tasks:
+
+  - include_tasks: utils_create_token.yml
+
   - name: Get firmware inventory
     include_tasks: utils_firmware_inventory.yml
     ignore_errors: True

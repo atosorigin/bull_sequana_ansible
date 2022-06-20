@@ -7,12 +7,14 @@
     - vars/passwords.yml
 
   tasks:
+
+  - include_tasks: utils_create_token.yml
+
   - name: Get System Inventory
     redfish_info:
       category: Systems,Accounts
       baseuri: "{{ baseuri }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+      auth_token: "{{ x_token }}"
     register: result
 
   - ansible.builtin.debug:

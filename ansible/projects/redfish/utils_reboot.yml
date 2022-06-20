@@ -4,8 +4,7 @@
       category: Manager
       command: GracefulRestart 
       baseuri: "{{baseuri}}"
-      username: "{{ username}}"
-      password: "{{ password }}"
+      auth_token: "{{ x_token }}"
       resource_id: bmc
     register: result
 

@@ -64,7 +64,7 @@ As indicated in the documentation, create your first super user:
 `docker exec -ti tools_awx_1 awx-manage createsuperuser`  
 ![alt text](doc/awx_create_superuser.png)  
 
-:computer: INFO: See https://github.com/ansible/awx/blob/devel/tools/docker-compose/README.md#create-an-admin-user
+:rotating_light: Critical: See https://github.com/ansible/awx/blob/devel/tools/docker-compose/README.md#create-an-admin-user
   
 At this point, you should be able to login with your new superuser  
 
@@ -86,6 +86,12 @@ You may use your <path/to>/ansible/projects/openbmc directory as is for docker v
 You may need to edit your TOWER variables
 ![alt text](doc/awx_tower_vars.png)
 
+#### recreate projects volume
+You may need to recreate your projects volume
+:computer: Info: Stop/Start your AX if you change the physical projects content (untar/new version of the playbooks)
+``` sh
+docker system prune -a --volumes
+```
 
 #### run your ansible role
 From a terminal, run the ansible role command:

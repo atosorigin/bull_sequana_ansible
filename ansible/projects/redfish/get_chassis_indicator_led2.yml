@@ -1,0 +1,26 @@
+---
+- hosts: all
+  connection: local
+  name: Indicator led
+  gather_facts: False
+  vars_files:
+    - vars/passwords.yml
+
+  tasks:
+
+  - include_tasks: utils_create_token.yml
+
+  - name: Get indicator led
+    uri:
+      url: https://{{ baseuri }}/redfish/v1/Chassis/Module0
+      method: GET
+      validate_certs: no
+      headers:
+        X-Auth-Token: "{{ x_token }}"
+    register: result
+
+  - debug:
+      var: result.json.LocationIndicatorActive
+
+  - debug:
+      var: result.json.IndicatorLED

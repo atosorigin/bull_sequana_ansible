@@ -22,6 +22,8 @@
     when: poweron_countdown is defined
     run_once: true
 
+  - include_tasks: utils_create_token.yml
+  
   - include_tasks: utils_system_power_on.yml    
 
   - include_tasks: wait_until_system_power_on.yml

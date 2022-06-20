@@ -2,7 +2,6 @@
 - name: Create Job Template {{ item.path | basename | replace('_',' ' ) | replace('.yml','') }}
   awx.awx.job_template:
     name: {{ item.path | basename | replace('_',' ' ) | replace('.yml','') }}
-    description: Get BMC State
     inventory: {{ inv_name }}
     project: {{ project_name }}
     playbook: {{ item.path | basename }}

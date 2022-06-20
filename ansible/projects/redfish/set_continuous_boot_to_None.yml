@@ -8,6 +8,8 @@
   
   tasks:
 
+  - include_tasks: utils_create_token.yml
+
   - name: Set continuous boot device to None
     community.general.redfish_command:
       category: Systems
@@ -15,5 +17,4 @@
       resource_id: system
       bootdevice: "None"
       baseuri: "{{ baseuri }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+      auth_token: "{{ x_token }}"

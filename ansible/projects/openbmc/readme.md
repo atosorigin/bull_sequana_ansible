@@ -1,3 +1,34 @@
 # BullSequana Edge Ansible Playbooks
 ## <a name="playbooks"></a>BullSequana Playbooks
-- `disable_ssh`: disable SSH protocol 
+- `activate_firmwares.yml`: Activate BullSequana Edge/SH uploaded firmwares - The playbook DOES NOT upload firmwares (It is needed to plan the image upload before)
+- `bmc_reboot.yml`: Reboot the BMC
+- `check_<alarms/states>.yml`: Check an alarm or a state
+- `delete_firmware_image.yml`: Delete a firmware image by version/purpose
+- `enable_ssh.yml/disable_ssh.yml`: enable / disable SSH protocol 
+- `enable_tpm.yml/disable_tpm.yml`: enable / disable TPM 
+- `evaluate_firmware_update .yml`: Evaluate firmware update from Atos specific Technical State file (comparaison)
+- `get_active_firmware_inventory.yml`: Get firmware inventory in "Active" state
+- `get_ready_firmware_inventory.yml`: Get firmware inventory in "Ready" state
+- `get_bios_boot_<mode or source>.yml`: Get current BIOS Boot Mode / Source
+- `get_<bmc/chassis/host>_state.yml`: Get BMC,Chassis or Host state
+- `get_FRU.yml`: Get the FRU
+- `get_led.yml`: Get the LED state
+- `get_logs.yml`: Get the logs
+- `get_network.yml`: Get the network properties
+- `get_ntp_server_ip_and_sync.yml`: Get or Set the NTP properties
+- `get_power_cap.yml`: Get the power capabilities
+- `get_rsyslog_server_ip_and_port.yml`: Get the rsyslog server ip and port
+- `get_sensors.yml`: Get the sensor proerties
+- `immediate_host_power_off.yml`: Immediate Host (Server) Power off
+- `immediate_host_reboot.yml`: Immediate reboot the Host (Server)
+- `orderly_host_reboot.yml`:  Orderly reboot Host (Server)
+- `orderly_host_power_off.yml`: Orderly Host (Server) Power off
+- `power_on.yml`: Host Power On
+- `set_bios_boot_<mode or source>.yml`: Set BIOS Boot Mode / Source
+- `set_led_off.yml set_led_on.yml `: Set LED Off/On
+- `set_power_cap_off.yml set_power_cap_on.yml `: Set Power Cap Off/On
+- `set_rsyslog_ip.yml set_rsyslog_port.yml `: Set RSyslog IP and port
+- `set_server_power_restore_policy_<AlwaysOff/AlwaysOn/Restore>.yml `: Set Power Restore Policy to Always Off, Always On or Restore
+- `update_firmware_from_file.yml`: Update Firmware from a file (tar or gzip file)
+- `update_firmwares.yml`: Update ALL Firmwares from a technical state (Atos specific TS file)
+- `upload_firmwares.yml`: Upload ALL images from a technical state (Atos specific TS file) - Do NOT activate firmwares (need to be planed after)

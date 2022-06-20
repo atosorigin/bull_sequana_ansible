@@ -4,12 +4,12 @@
       category: Update
       command: GetFirmwareInventory
       baseuri: "{{ baseuri }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+      auth_token: "{{ x_token }}"
     register: result_firmware_inventory
 
   - debug:
       var: result_firmware_inventory.redfish_facts.firmware.entries
+      verbosity: 2
 
   - set_fact:
       firmware_inventory: "{{ result_firmware_inventory.redfish_facts.firmware.entries }}"

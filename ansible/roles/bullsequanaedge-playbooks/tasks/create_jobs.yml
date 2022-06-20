@@ -1,27 +1,6 @@
-- name: Create Job Template activate firmware update
-  awx.awx.job_template:
-    name: activate firmware update
-    description: Get BMC State
-    inventory: BullSequana Edge Inventory
-    project: Bull Sequana Edge Project
-    playbook: activate_firmware_update.yml
-    job_type: run
-    verbosity: 0
-    state: present
-- name: Create Job Template chassis power off
-  awx.awx.job_template:
-    name: chassis power off
-    description: Get BMC State
-    inventory: BullSequana Edge Inventory
-    project: Bull Sequana Edge Project
-    playbook: chassis_power_off.yml
-    job_type: run
-    verbosity: 0
-    state: present
 - name: Create Job Template check bmc alive
   awx.awx.job_template:
     name: check bmc alive
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: check_bmc_alive.yml
@@ -31,7 +10,6 @@
 - name: Create Job Template check critical high low alarm sensors
   awx.awx.job_template:
     name: check critical high low alarm sensors
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: check_critical_high_low_alarm_sensors.yml
@@ -41,7 +19,6 @@
 - name: Create Job Template check power off
   awx.awx.job_template:
     name: check power off
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: check_power_off.yml
@@ -51,7 +28,6 @@
 - name: Create Job Template check power on
   awx.awx.job_template:
     name: check power on
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: check_power_on.yml
@@ -61,7 +37,6 @@
 - name: Create Job Template check rsyslog server ip and port
   awx.awx.job_template:
     name: check rsyslog server ip and port
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: check_rsyslog_server_ip_and_port.yml
@@ -71,7 +46,6 @@
 - name: Create Job Template check warning high low alarm sensors
   awx.awx.job_template:
     name: check warning high low alarm sensors
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: check_warning_high_low_alarm_sensors.yml
@@ -81,7 +55,6 @@
 - name: Create Job Template delete firmware image
   awx.awx.job_template:
     name: delete firmware image
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: delete_firmware_image.yml
@@ -91,7 +64,6 @@
 - name: Create Job Template disable ssh
   awx.awx.job_template:
     name: disable ssh
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: disable_ssh.yml
@@ -101,7 +73,6 @@
 - name: Create Job Template enable ssh
   awx.awx.job_template:
     name: enable ssh
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: enable_ssh.yml
@@ -111,7 +82,6 @@
 - name: Create Job Template evaluate firmware update
   awx.awx.job_template:
     name: evaluate firmware update
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: evaluate_firmware_update.yml
@@ -121,7 +91,6 @@
 - name: Create Job Template get FRU
   awx.awx.job_template:
     name: get FRU
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_FRU.yml
@@ -131,7 +100,6 @@
 - name: Create Job Template get active firmware inventory
   awx.awx.job_template:
     name: get active firmware inventory
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_active_firmware_inventory.yml
@@ -141,7 +109,6 @@
 - name: Create Job Template get bios boot mode
   awx.awx.job_template:
     name: get bios boot mode
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_bios_boot_mode.yml
@@ -151,7 +118,6 @@
 - name: Create Job Template get bios boot source
   awx.awx.job_template:
     name: get bios boot source
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_bios_boot_source.yml
@@ -161,7 +127,6 @@
 - name: Create Job Template get bmc state
   awx.awx.job_template:
     name: get bmc state
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_bmc_state.yml
@@ -171,7 +136,6 @@
 - name: Create Job Template get chassis state
   awx.awx.job_template:
     name: get chassis state
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_chassis_state.yml
@@ -181,7 +145,6 @@
 - name: Create Job Template get host state
   awx.awx.job_template:
     name: get host state
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_host_state.yml
@@ -191,7 +154,6 @@
 - name: Create Job Template get led
   awx.awx.job_template:
     name: get led
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_led.yml
@@ -201,7 +163,6 @@
 - name: Create Job Template get logs
   awx.awx.job_template:
     name: get logs
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_logs.yml
@@ -211,7 +172,6 @@
 - name: Create Job Template get network
   awx.awx.job_template:
     name: get network
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_network.yml
@@ -221,7 +181,6 @@
 - name: Create Job Template get ntp server ip and sync
   awx.awx.job_template:
     name: get ntp server ip and sync
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_ntp_server_ip_and_sync.yml
@@ -231,7 +190,6 @@
 - name: Create Job Template get power cap
   awx.awx.job_template:
     name: get power cap
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_power_cap.yml
@@ -241,7 +199,6 @@
 - name: Create Job Template get ready firmware inventory
   awx.awx.job_template:
     name: get ready firmware inventory
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_ready_firmware_inventory.yml
@@ -251,7 +208,6 @@
 - name: Create Job Template get rsyslog server ip and port
   awx.awx.job_template:
     name: get rsyslog server ip and port
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_rsyslog_server_ip_and_port.yml
@@ -261,7 +217,6 @@
 - name: Create Job Template get sensors
   awx.awx.job_template:
     name: get sensors
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_sensors.yml
@@ -271,47 +226,24 @@
 - name: Create Job Template get system
   awx.awx.job_template:
     name: get system
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: get_system.yml
     job_type: run
     verbosity: 0
     state: present
-- name: Create Job Template power off
-  awx.awx.job_template:
-    name: power off
-    description: Get BMC State
-    inventory: BullSequana Edge Inventory
-    project: Bull Sequana Edge Project
-    playbook: power_off.yml
-    job_type: run
-    verbosity: 0
-    state: present
 - name: Create Job Template power on
   awx.awx.job_template:
     name: power on
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: power_on.yml
     job_type: run
     verbosity: 0
     state: present
-- name: Create Job Template reboot
-  awx.awx.job_template:
-    name: reboot
-    description: Get BMC State
-    inventory: BullSequana Edge Inventory
-    project: Bull Sequana Edge Project
-    playbook: reboot.yml
-    job_type: run
-    verbosity: 0
-    state: present
 - name: Create Job Template set bios boot mode regular
   awx.awx.job_template:
     name: set bios boot mode regular
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_bios_boot_mode_regular.yml
@@ -321,7 +253,6 @@
 - name: Create Job Template set bios boot mode safe
   awx.awx.job_template:
     name: set bios boot mode safe
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_bios_boot_mode_safe.yml
@@ -331,7 +262,6 @@
 - name: Create Job Template set bios boot mode setup
   awx.awx.job_template:
     name: set bios boot mode setup
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_bios_boot_mode_setup.yml
@@ -341,7 +271,6 @@
 - name: Create Job Template set bios boot source default
   awx.awx.job_template:
     name: set bios boot source default
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_bios_boot_source_default.yml
@@ -351,7 +280,6 @@
 - name: Create Job Template set bios boot source disk
   awx.awx.job_template:
     name: set bios boot source disk
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_bios_boot_source_disk.yml
@@ -361,7 +289,6 @@
 - name: Create Job Template set bios boot source external media
   awx.awx.job_template:
     name: set bios boot source external media
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_bios_boot_source_external_media.yml
@@ -371,7 +298,6 @@
 - name: Create Job Template set bios boot source network
   awx.awx.job_template:
     name: set bios boot source network
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_bios_boot_source_network.yml
@@ -381,7 +307,6 @@
 - name: Create Job Template set led off
   awx.awx.job_template:
     name: set led off
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_led_off.yml
@@ -391,7 +316,6 @@
 - name: Create Job Template set led on
   awx.awx.job_template:
     name: set led on
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_led_on.yml
@@ -401,7 +325,6 @@
 - name: Create Job Template set ntp server ip and sync
   awx.awx.job_template:
     name: set ntp server ip and sync
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_ntp_server_ip_and_sync.yml
@@ -411,7 +334,6 @@
 - name: Create Job Template set power cap off
   awx.awx.job_template:
     name: set power cap off
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_power_cap_off.yml
@@ -421,7 +343,6 @@
 - name: Create Job Template set power cap on
   awx.awx.job_template:
     name: set power cap on
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_power_cap_on.yml
@@ -431,7 +352,6 @@
 - name: Create Job Template set rsyslog server ip
   awx.awx.job_template:
     name: set rsyslog server ip
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_rsyslog_server_ip.yml
@@ -441,7 +361,6 @@
 - name: Create Job Template set rsyslog server port
   awx.awx.job_template:
     name: set rsyslog server port
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: set_rsyslog_server_port.yml
@@ -451,7 +370,6 @@
 - name: Create Job Template update firmware from file
   awx.awx.job_template:
     name: update firmware from file
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: update_firmware_from_file.yml
@@ -461,7 +379,6 @@
 - name: Create Job Template update firmwares
   awx.awx.job_template:
     name: update firmwares
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: update_firmwares.yml
@@ -471,10 +388,117 @@
 - name: Create Job Template upload firmwares
   awx.awx.job_template:
     name: upload firmwares
-    description: Get BMC State
     inventory: BullSequana Edge Inventory
     project: Bull Sequana Edge Project
     playbook: upload_firmwares.yml
+    job_type: run
+    verbosity: 0
+    state: present
+- name: Create Job Template bmc reboot
+  awx.awx.job_template:
+    name: bmc reboot
+    inventory: BullSequana Edge Inventory
+    project: Bull Sequana Edge Project
+    playbook: bmc_reboot.yml
+    job_type: run
+    verbosity: 0
+    state: present
+- name: Create Job Template activate firmwares
+  awx.awx.job_template:
+    name: activate firmwares
+    inventory: BullSequana Edge Inventory
+    project: Bull Sequana Edge Project
+    playbook: activate_firmwares.yml
+    job_type: run
+    verbosity: 0
+    state: present
+- name: Create Job Template immediate host reboot
+  awx.awx.job_template:
+    name: immediate host reboot
+    inventory: BullSequana Edge Inventory
+    project: Bull Sequana Edge Project
+    playbook: immediate_host_reboot.yml
+    job_type: run
+    verbosity: 0
+    state: present
+- name: Create Job Template immediate host power off
+  awx.awx.job_template:
+    name: immediate host power off
+    inventory: BullSequana Edge Inventory
+    project: Bull Sequana Edge Project
+    playbook: immediate_host_power_off.yml
+    job_type: run
+    verbosity: 0
+    state: present
+- name: Create Job Template orderly host power off
+  awx.awx.job_template:
+    name: orderly host power off
+    inventory: BullSequana Edge Inventory
+    project: Bull Sequana Edge Project
+    playbook: orderly_host_power_off.yml
+    job_type: run
+    verbosity: 0
+    state: present
+- name: Create Job Template orderly host reboot
+  awx.awx.job_template:
+    name: orderly host reboot
+    inventory: BullSequana Edge Inventory
+    project: Bull Sequana Edge Project
+    playbook: orderly_host_reboot.yml
+    job_type: run
+    verbosity: 0
+    state: present
+- name: Create Job Template set server power restore policy always off
+  awx.awx.job_template:
+    name: set server power restore policy always off
+    inventory: BullSequana Edge Inventory
+    project: Bull Sequana Edge Project
+    playbook: set_server_power_restore_policy_always_off.yml
+    job_type: run
+    verbosity: 0
+    state: present
+- name: Create Job Template set server power restore policy always on
+  awx.awx.job_template:
+    name: set server power restore policy always on
+    inventory: BullSequana Edge Inventory
+    project: Bull Sequana Edge Project
+    playbook: set_server_power_restore_policy_always_on.yml
+    job_type: run
+    verbosity: 0
+    state: present
+- name: Create Job Template set server power restore policy restore
+  awx.awx.job_template:
+    name: set server power restore policy restore
+    inventory: BullSequana Edge Inventory
+    project: Bull Sequana Edge Project
+    playbook: set_server_power_restore_policy_restore.yml
+    job_type: run
+    verbosity: 0
+    state: present
+- name: Create Job Template get tpm
+  awx.awx.job_template:
+    name: get tpm
+    inventory: BullSequana Edge Inventory
+    project: Bull Sequana Edge Project
+    playbook: get_tpm.yml
+    job_type: run
+    verbosity: 0
+    state: present
+- name: Create Job Template enable tpm
+  awx.awx.job_template:
+    name: enable tpm
+    inventory: BullSequana Edge Inventory
+    project: Bull Sequana Edge Project
+    playbook: enable_tpm.yml
+    job_type: run
+    verbosity: 0
+    state: present
+- name: Create Job Template disable tpm
+  awx.awx.job_template:
+    name: disable tpm
+    inventory: BullSequana Edge Inventory
+    project: Bull Sequana Edge Project
+    playbook: disable_tpm.yml
     job_type: run
     verbosity: 0
     state: present

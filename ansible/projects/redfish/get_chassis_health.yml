@@ -8,13 +8,14 @@
 
   tasks:
 
+  - include_tasks: utils_create_token.yml
+
   - name: Get Chassis Health
     redfish_info:
       category: Chassis
       command: GetHealthReport
       baseuri: "{{ baseuri }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+      auth_token: "{{ x_token }}"
     register: result
 
   - ansible.builtin.debug:

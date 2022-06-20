@@ -29,10 +29,10 @@
     when: reboot == False and should_reboot is defined and should_reboot == True
 
   - name: Reboot BMC
-    include_tasks: utils_reboot.yml
+    include_tasks: utils_bmc_reboot.yml
     when: reboot == True and should_reboot is defined and should_reboot == True
 
   - name: Retry until reboot
-    include_tasks: wait_until_success_reboot.yml   
+    include_tasks: wait_until_success_bmc_reboot.yml   
     when: reboot == True and should_reboot is defined and should_reboot == True
 

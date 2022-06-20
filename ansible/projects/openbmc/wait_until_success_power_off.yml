@@ -4,8 +4,12 @@
     block:
       - name: Set the retry counter
         set_fact:
-          retry_power_off_count: "{{ 0 if retry_power_off_count is undefined else retry_power_off_count|int + 1 }}"
-        
+          retry_power_off_count: "{{ 0 if retry_power_off_count is undefined else retry_power_off_count|int + 1 }}"        
+
+      - name: Pause {{ poweroff_countdown }}s while host is not powered off
+        pause:
+          seconds: "{{ poweroff_countdown }}"
+
       - name: Get Power
         include_tasks: utils_get_power.yml
 
@@ -19,11 +23,6 @@
       - set_fact:
           found_retry_power_off: True
         when: power == "xyz.openbmc_project.State.Host.HostState.Off"
-
-      - name: Pause {{ poweroff_countdown }}s while host is not powered off
-        pause:
-          seconds: "{{ poweroff_countdown }}"
-        when: found_retry_power_off is defined and found_retry_power_off == False
 
       - fail:
           msg: "Not Powered off"

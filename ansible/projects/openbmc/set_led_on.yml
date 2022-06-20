@@ -10,7 +10,7 @@
 
   - include_tasks: utils_create_token.yml
 
-  - name: Set On
+  - name: set On
     uri:
       url: https://{{ baseuri }}/xyz/openbmc_project/led/groups/enclosure_identify/attr/Asserted
       method: PUT

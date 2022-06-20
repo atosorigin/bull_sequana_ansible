@@ -13,8 +13,7 @@
         redfish_info:
           category: Systems
           baseuri: "{{ baseuri }}"
-          username: "{{ username}}"
-          password: "{{ password }}"
+          auth_token: "{{ x_token }}"
         register: result
 
       - fail:

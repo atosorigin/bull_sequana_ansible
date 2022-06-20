@@ -1,7 +1,7 @@
 ---
 - hosts: all
   connection: local
-  name: Manage Server LED Light off -
+  name: Manage Server LED Light off
   gather_facts: False
   vars_files:
     - vars/external_vars.yml

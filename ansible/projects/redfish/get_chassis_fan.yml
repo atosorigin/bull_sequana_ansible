@@ -8,13 +8,14 @@
   
   tasks:
 
+  - include_tasks: utils_create_token.yml
+
   - name: get Chassis Fan Inventory
     redfish_info:
       category: Chassis
       command: GetFanInventory
       baseuri: "{{ baseuri }}"
-      username: "{{ username}}"
-      password: "{{ password }}"
+      auth_token: "{{ x_token }}"
     register: result
 
   - ansible.builtin.debug:

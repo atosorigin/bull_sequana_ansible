@@ -8,13 +8,14 @@
 
   tasks:
 
+  - include_tasks: utils_create_token.yml
+
   - name: Get All information
     redfish_info:
       category: Manager
       command: all
       baseuri: "{{ baseuri }}"
-      username: "{{ username}}"
-      password: "{{ password }}"
+      auth_token: "{{ x_token }}"
     register: result
 
   - debug:

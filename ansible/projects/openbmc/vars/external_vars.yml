@@ -1,6 +1,6 @@
 # Set a path to a Bull Technical State file
 # technical_state_path: /mnt
-technical_state_path: /mnt
+technical_state_path: /var/bull_ansible/tests
 # Define rsyslog ip
 # rsyslog_server_ip: 
 rsyslog_server_ip: 
@@ -26,14 +26,14 @@ reboot: true
 # token_timeout: 5
 token_timeout: 5
 # Count down before checking a successfull reboot in MINUTES
-# reboot_countdown: 2
-reboot_countdown: 2
+# reboot_countdown: 3
+reboot_countdown: 3
 # Count down before checking a successfull for power on/off in SECONDS
 # poweron_countdown: 5
-poweron_countdown: 5
+poweron_countdown: 15
 # Count down before checking a successfull for power on/off in SECONDS
 # poweroff_countdown: 5
-poweroff_countdown: 5
+poweroff_countdown: 15
 # Count down after activating update in SECONDS
 # activating_countdown: 30
 activating_countdown: 30

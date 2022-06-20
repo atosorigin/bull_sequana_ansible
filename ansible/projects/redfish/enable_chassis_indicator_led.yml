@@ -1,0 +1,41 @@
+---
+- hosts: all
+  connection: local
+  name: Enable Systems indicator led
+  gather_facts: False
+  vars_files:
+    - vars/passwords.yml
+  
+  tasks:
+
+  - include_tasks: utils_create_token.yml
+
+  - name: get Chassis Inventory
+    community.general.redfish_info:
+      category: Chassis
+      command: GetChassisInventory
+      baseuri: "{{ baseuri }}"
+      auth_token: "{{ x_token }}"
+    register: result
+
+  - set_fact:
+      chassis: "{{ result.redfish_facts.chassis }}"  
+
+  - name: Enable Indicator LED
+    uri:
+      url: https://{{ baseuri }}/redfish/v1/Chassis/{{ item.Id }}
+      method: PATCH
+      body_format: json
+      body: '{"LocationIndicatorActive": true}'
+      validate_certs: no
+      timeout: 60
+      headers:
+        Content-Type: "application/json"
+        X-Auth-Token: "{{ x_token }}"
+    with_items: "{{ chassis.entries}}" 
+    when: chassis.ret
+    register: result_enable_LED
+
+  - ansible.builtin.debug:
+      var: result_enable_LED
+      

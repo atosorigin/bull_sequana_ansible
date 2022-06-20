@@ -8,13 +8,14 @@
 
   tasks:
 
+  - include_tasks: utils_create_token.yml
+
   - name: Get Memory Inventory
     redfish_info:
       category: Systems
       command: GetMemoryInventory
       baseuri: "{{ baseuri }}"
-      username: "{{ username}}"
-      password: "{{ password }}"
+      auth_token: "{{ x_token }}"
     register: result
 
   - debug:

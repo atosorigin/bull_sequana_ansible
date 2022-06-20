@@ -18,9 +18,11 @@
     run_once: true
 
   - debug:
-      msg: "power_force_restart_countdown is {{ powerforce_restart_countdown }}"
+      msg: "power_force_restart_countdown is {{ power_force_restart_countdown }}"
     when: power_force_restart_countdown is defined
     run_once: true
+
+  - include_tasks: utils_create_token.yml
 
   - include_tasks: utils_manager_power_force_restart.yml 
 

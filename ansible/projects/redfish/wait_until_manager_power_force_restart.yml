@@ -4,8 +4,11 @@
       - name: Set the retry counter
         set_fact:
           retry_power_force_restart_count: "{{ 0 if retry_power_force_restart_count is undefined else retry_power_force_restart_count|int + 1 }}"
-        
-      - name: Pause {{ power_force_restart_countdown }}s while manager is restarting
+
+      - debug:
+          msg: "Pause {{ power_force_restart_countdown }}s while manager is powering forceful restart"       
+
+      - name: Pause while manager is powering forceful restart
         pause:
           seconds: "{{ power_force_restart_countdown }}"
 
@@ -13,8 +16,8 @@
         redfish_info:
           category: Manager
           baseuri: "{{ baseuri }}"
-          username: "{{ username}}"
-          password: "{{ password }}"
+          auth_token: "{{ x_token }}"
+          command: GetHealthReport
         register: result
 
       - fail:
@@ -25,31 +28,31 @@
           var: result.redfish_facts
 
       - debug:
-          var: result.redfish_facts.manager
+          var: result.redfish_facts.health_report
 
       - debug:
-          var: result.redfish_facts.manager.entries
+          var: result.redfish_facts.health_report.entries
 
       - debug:
-          var: result.redfish_facts.manager.entries[0]
+          var: result.redfish_facts.health_report.entries[0]
 
       - debug:
-          var: result.redfish_facts.manager.entries[0][1]
+          msg: "entry: {{ result.redfish_facts.health_report.entries[0][1] }}"
 
       - debug:
-          msg: "{{ result.redfish_facts.manager.entries[0][1]['PowerState'] }}"
+          msg: "Status: {{ result.redfish_facts.health_report.entries[0][1].Manager.Status }}"
 
-      - name: Current PowerState
+      - name: Current State
         set_fact:
-          powerstate: "{{ result.redfish_facts.manager.entries[0][1]['PowerState'] }}"
+          state: "{{ result.redfish_facts.health_report.entries[0][1].Manager.Status.State }}"
         when: result.redfish_facts is defined
 
       - debug:
-          var: powerstate
+          var: state
 
       - fail:
           msg: "Manager powering force restart in progress..."
-        when: not powerstate == "On"
+        when: not state == "Enabled"
 
     rescue:
       - fail:
@@ -67,4 +70,3 @@
         when: retry_power_force_restart_count|int > 1
 
       - include_tasks: wait_until_manager_power_force_restart.yml
-

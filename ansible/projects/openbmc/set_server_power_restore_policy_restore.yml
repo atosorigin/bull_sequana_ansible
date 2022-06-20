@@ -1,0 +1,42 @@
+---
+- hosts: all
+  connection: local
+  name: Set Server Power Restore Policy to Restore
+  gather_facts: False
+  vars_files:
+    - vars/external_vars.yml
+
+  tasks:
+
+  - include_tasks: utils_create_token.yml
+
+  - name: set power restore policy to Restore
+    uri:
+      url: https://{{ baseuri }}/xyz/openbmc_project/control/host0/power_restore_policy/attr/PowerRestorePolicy
+      method: PUT
+      validate_certs: no
+      headers:
+        X-Auth-Token: "{{ x_token }}"        
+      body_format: json
+      body: 
+        data: xyz.openbmc_project.Control.Power.RestorePolicy.Policy.Restore
+
+  - name: get power restore policy
+    uri:
+      url: https://{{ baseuri }}/xyz/openbmc_project/control/host0/power_restore_policy/attr/PowerRestorePolicy
+      method: GET
+      validate_certs: no
+      headers:
+        X-Auth-Token: "{{ x_token }}"
+    register: result_power_restore_policy
+
+  - set_fact:
+      power_restore_policy: "{{ result_power_restore_policy.json.data }}"
+
+  - name: validate power restore policy is Restore
+    assert:
+      that:
+        - power_restore_policy  == "xyz.openbmc_project.Control.Power.RestorePolicy.Policy.Restore"
+      fail_msg: "The Server Power Restore Policy is NOT Restore"
+      success_msg: "The Server Power Restore Policy is now Restore"
+

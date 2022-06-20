@@ -24,32 +24,8 @@
       fail_msg: "The variable taskmon_maxretries is NOT defined in inventory vars/external_vars.yml file (Ansible). See readme.md for more details."
       success_msg: "The variable taskmon_maxretries is defined"
     run_once: true
-        
-  - name: Create token from Redfish
-    uri:
-      url: https://{{ baseuri }}/redfish/v1/SessionService/Sessions
-      method: POST
-      validate_certs: no
-      timeout: 30
-      headers:
-        Content-Type: "application/json"
-      body_format: json
-      status_code: 201
-      body: 
-        UserName: "{{ username }}"
-        Password: "{{ password }}"
-    register: result
-    until: result.status == 201
-    retries: "6"
-    delay: "10"
-  
-  - debug:
-      var: result
-      verbosity: 2
-      
-  - set_fact: 
-      x_token: "{{ result.x_auth_token }}"
 
+  - include_tasks: utils_create_token.yml
 
   - name: Set ApplyTime=OnReset
     uri:

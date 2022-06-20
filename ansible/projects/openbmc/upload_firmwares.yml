@@ -24,7 +24,7 @@
 
   - include_tasks: utils_firmware_inventory.yml
 
-  - include_tasks: utils_evaluate_firmware_update.yml
+  - include_tasks: utils_evaluate_firmwares.yml
 
   - include_tasks: utils_upload_firmwares.yml
 

@@ -8,6 +8,8 @@
   
   tasks:
 
+  - include_tasks: utils_create_token.yml
+
   - name: Set one-time boot device to Diags
     community.general.redfish_command:
       category: Systems
@@ -15,5 +17,4 @@
       resource_id: system
       bootdevice: "Diags"
       baseuri: "{{ baseuri }}"
-      username: "{{ username }}"
-      password: "{{ password }}"
+      auth_token: "{{ x_token }}"

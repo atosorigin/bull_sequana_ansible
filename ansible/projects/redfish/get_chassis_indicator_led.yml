@@ -1,0 +1,30 @@
+---
+- hosts: all
+  connection: local
+  name: Chassis Indicator LED
+  gather_facts: False
+  vars_files:
+    - vars/passwords.yml
+  
+  tasks:
+
+  - include_tasks: utils_create_token.yml
+
+  - name: get Chassis Inventory
+    community.general.redfish_info:
+      category: Chassis
+      command: all
+      baseuri: "{{ baseuri }}"
+      auth_token: "{{ x_token }}"
+    register: result
+
+  - set_fact:
+      chassis: "{{ result.redfish_facts.chassis }}"    
+
+  - ansible.builtin.debug:
+      var: chassis
+
+  - ansible.builtin.debug:
+      msg: "{{ item.Name }}'s LED is {{ (item.IndicatorLED == 'Off' or item.IndicatorLED == 'Unknown') | ternary('Inactive', 'Active', 'null') }}"
+    with_items: "{{ chassis.entries}}" 
+    when: chassis.ret

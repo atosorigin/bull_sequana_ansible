@@ -6,6 +6,10 @@
         set_fact:
           retry_power_on_count: "{{ 0 if retry_power_on_count is undefined else retry_power_on_count|int + 1 }}"
         
+      - name: Pause {{ poweron_countdown }}s while host is not powered on
+        pause:
+          seconds: "{{ poweron_countdown }}"
+
       - name: Get Power
         include_tasks: utils_get_power.yml
 
@@ -19,11 +23,6 @@
       - set_fact:
           found_retry_power_on: True
         when: power == "xyz.openbmc_project.State.Host.HostState.Running"
-
-      - name: Pause {{ poweron_countdown }}s while host is not powered on
-        pause:
-          seconds: "{{ poweron_countdown }}"
-        when: found_retry_power_on is defined and found_retry_power_on == False
 
       - fail:
           msg: "Not Powered on"

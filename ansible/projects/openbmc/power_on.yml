@@ -1,7 +1,7 @@
 ---
 - hosts: all
   connection: local
-  name: Manage System Power on 
+  name: Manage Host (Server) Power on 
   gather_facts: False
   vars_files:
     - vars/external_vars.yml
@@ -19,6 +19,19 @@
   - debug:
       msg: "poweron_countdown is {{ poweron_countdown }}"
     when: poweron_countdown is defined
+    run_once: true
+
+  - name: validate poweron_maxretries variable
+    assert:
+      that:
+        - poweron_maxretries is defined
+      fail_msg: "The variable poweron_maxretries is NOT defined in inventory (AWX) or vars/external_vars file (Ansible). See readme.md for more details."
+      success_msg: "The variable poweron_maxretries is defined"
+    run_once: true
+
+  - debug:
+      msg: "poweron_maxretries is {{ poweron_maxretries }}"
+    when: poweron_maxretries is defined
     run_once: true
 
   - include_tasks: utils_create_token.yml

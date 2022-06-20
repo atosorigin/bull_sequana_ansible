@@ -1,0 +1,24 @@
+---
+- hosts: all
+  connection: local
+  name: Enable TPM 
+  gather_facts: False
+  vars_files:
+    - vars/external_vars.yml
+
+  tasks:
+
+  - include_tasks: utils_create_token.yml
+
+  - name: enable TPM
+    uri:
+      url: https://{{ baseuri }}/xyz/openbmc_project/control/host0/TPMEnable/attr/TPMEnable
+      method: PUT
+      validate_certs: no
+      headers:
+        X-Auth-Token: "{{ x_token }}"
+      body_format: json
+      body: 
+        data: true
+    register: result_enable_tpm
+

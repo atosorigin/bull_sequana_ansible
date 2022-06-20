@@ -1,0 +1,32 @@
+---
+- hosts: all
+  connection: local
+  name: Get TPM Enabme
+  gather_facts: False
+  vars_files:
+    - vars/external_vars.yml
+
+  tasks:
+
+  - include_tasks: utils_create_token.yml
+
+  - name: get TPM Enable property
+    uri:
+      url: https://{{ baseuri }}/xyz/openbmc_project/control/host0/TPMEnable/attr/TPMEnable
+      method: GET
+      validate_certs: no
+      headers:
+        X-Auth-Token: "{{ x_token }}"
+    register: result_tpm_enable
+
+  - set_fact:
+      address_ip: "{{ result_tpm_enable.json.data }}"
+
+  - set_fact:
+      tpm: "{{ result_tpm_enable.json.data }}"
+
+  - name: TPM Enable
+    debug:
+      msg: "TPM Enable = {{tpm}}}"
+    when: tpm is defined
+

@@ -49,7 +49,7 @@
     fail: msg="Global Update stopped - Your environment variable forceoff is False and Host should be powered off => Cannot update BIOS/CPLD"
     when: forceoff == False and should_poweroff is defined and should_poweroff == True
 
-  - include_tasks: utils_chassis_power_off.yml    
+  - include_tasks: utils_immediate_power_off.yml    
     when: forceoff == True and should_poweroff is defined and should_poweroff == True
   
   - name: Retry until power off

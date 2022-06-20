@@ -1,45 +1,40 @@
 # BullSequana SH Ansible Playbooks
 ## <a name="playbooks"></a>BullSequana Playbooks
-- `Activate firmware updates`: Activate BullSequana Edge/SH uploaded firmwares - The playbook DOES NOT upload firmwares (It is needed to plan the image upload before)
-- `Evaluate firmware update from Technical State`: Evaluate firmware update from Atos specific Technical State file (comparaison)
-- `Delete firmware image`: Delete a firmware image by id
-- `Firmware inventory` - Active: Get firmware inventory in "Active" state
-- `Firmware inventory - Ready`: Get firmware inventory in "Ready" state
-- `BIOS Boot Mode`: Get current BIOS Boot Mode
-- `Set BIOS Boot Mode Regular`: Set BIOS Boot Mode to Regular
-- `Set BIOS Boot Mode Safe`: Set BIOS Boot Mode to Safe
-- `Set BIOS Boot Mode Setup`: Set BIOS Boot Mode to Setup
-- `BIOS Boot Source`: Get current BIOS Boot Source
-- `Set BIOS Boot Source Default`: Set BIOS Boot Source to Default
-- `Set BIOS Boot Source Disk`: Set BIOS Boot Source to Disk
-- `Set BIOS Boot Source Media`: Set BIOS Boot Source to Media
-- `Set BIOS Boot Source Network`: Set BIOS Boot Source to Network
-- `Update firmware from file`: Update Firmware from a file (tar or gzip file)
-- `Update firmwares from Technical State`: Update all Firmwares from technical state (Atos specific TS file)
-- `Upload firmware images from Technical State`: Upload images from technical state (Atos specific TS file) - Do NOT activate firmwares (need to be planed after)
-- `Check critical high and low alarms`: Check critical high and low alarm states from sensors
-- `Check warning high and low alarms`: Check warning high and low alarm states from sensors
-- `State BMC`: Get BullSequana Edge/SH current BMC state
-- `State Chassis`: Get BullSequana Edge/SH current chassis state 
-- `State Host`:Get BullSequana Edge/SH current host state
-- `Get FRU`: Get BullSequana Edge/SH FRU information
-- `Get Network`: Get BullSequana Edge/SH Network information
-- `Get Sensors`: Get BullSequana Edge/SH Sensors information
-- `Get System`: Get BullSequana Edge/SH System information
-- `Check Rsyslog Server IP and Port`: Compare Rsyslog Server IP and Port to variables defined in inventory
-- `Rsyslog Server IP and Port`: Get BullSequana Edge/SH Rsyslog IP and Port
-- `NTP Server Ip and Sync`: NTP Server Ip and Sync
-- `Set Rsyslog Server IP`: Set Rsyslog BullSequana Edge/SH IP
-- `Set Rsyslog Server Port: `Set Rsyslog BullSequana Edge/SH Port
-- `Set NTP Server Ip and Sync`: Set BullSequana Edge/SH Server Ip and Sync
-- `Immediate Shutdown`: Request an Immediate Shutdown
-- `Check BMC alive`: Check if BullSequana Edge/SH device is alive
-- `Check Power Off`: Check if BullSequana Edge/SH host is powered off
-- `Check Power On`: Check if BullSequana Edge/SH host is powered on
-- `Get LED state`: Get BullSequana Edge/SH LED state
-- `Power Cap`: Get BullSequana Edge/SH Power Cap
-- `Orderly Shutdown`: Request an Orderly Shutdown
-- `Power On`: Request a Power On
-- `Reboot`: Reboot the BullSequana Edge/SH BMC
-- `Set LED on/off`: Set BullSequana Edge/SH LED state
-- `Set Power Cap on/off`: Set BullSequana Edge/SH Power cap on/off
+- `disable_ssh.yml`: Disable the SSH mode 
+- `disable_chassis_indicator_led.yml`: Disable chassis indicator LED
+- `enable_ssh.yml`: Enable the SSH mode 
+- `enable_chassis_indicator_led.yml`: Enable chassis indicator LED
+- `get_boot_options.yml`: Get boot options 
+- `get_chassis.yml`: Get all chassis details 
+- `get_chassis_fan.yml`: Get chassis fan 
+- `get_chassis_health.yml`: Get chassis States and Status
+- `get_chassis_indicator_led.yml`: Get chassis indicator LED state
+- `get_chassis_inventory.yml`: Get chassis inventory
+- `get_chassis_thermals.yml`: Get chassis thermals
+- `get_cpu_inventory.yml`: Get cpu inventory
+- `get_log_services.yml`: Get log services
+- `get_manager_all_info.yml`: Get manager all info
+- `get_manager_nic_inventory.yml`: Get manager nic inventory
+- `get_memory_inventory.yml`: Get memory inventory
+- `get_networks.yml`: Get network info
+- `get_session_information.yml`: Get session information
+- `get_system.yml`: Get system
+- `get_system_power.yml`: Get system power state
+- `get_systems_health.yml`: Get system states and status
+- `get_systems_indicator_led.yml`: Get Systems LED state
+- `get_systems_inventory.yml`: Get systems inventory 
+- `get_systems_nic_inventory.yml`: Get NIC inventory
+- `list_users.yml`: List users
+- `manager_power_force_restart.yml`: Force managers to restart
+- `manager_power_graceful_restart.yml`: Gracefully restart the Managers
+- `reboot.yml`: Reboot BMC
+- `set_chassis_indicator_led to_<state>.yml`: Set the LED to a desired state as a 
+- `set_<onetime or continuous>_boot_to_<mode>.yml`: Set boot option to a desired mode
+- `set_ntp_servers.yml`: Set the 3 NTP Servers to specific values in external_vars.yml: **ntp_server1** / **ntp_server2** / **ntp_server3**
+- `set_power_cap.yml`: Set the power cap to a specific value in external_vars.yml: **power_cap**
+- `system_power_force_off.yml`: Force off system power
+- `system_power_force_restart.yml`: Force restart system power
+- `system_power_off.yml`: Graceful System power off
+- `system_power_on.yml`: System power on
+- `update_firmware.yml`: Update ONE firmware specified in external_vars.yml: **file_to_upload**
+- `update_firmwares_from_TS.yml`: Update firmwares from TS mounted on : **technical_state_path** 
