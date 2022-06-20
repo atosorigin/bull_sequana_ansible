@@ -88,9 +88,20 @@ You may need to edit your TOWER variables
 
 #### recreate projects volume
 You may need to recreate your projects volume
-:computer: Info: Stop/Start your AX if you change the physical projects content (untar/new version of the playbooks)
+:computer: Info: Stop/Start your AWX if you change the physical **projects** directory (untar/new version of the playbooks)
 ``` sh
-docker system prune -a --volumes
+# get all volumes 
+docker volume list --all
+#remove the volume
+docker volume rm projects
+```
+:computer: Info: In case of container issue, stop and remove the container
+``` sh
+#remove the container if needed
+docker container list --all
+docker container stop <Container Id>
+docker container rm <Container Id>
+docker volume rm projects
 ```
 
 #### run your ansible role
