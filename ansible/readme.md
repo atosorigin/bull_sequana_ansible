@@ -492,7 +492,7 @@ exemple:
 #### how to evaluate a TS file (Technical State)
 
 ```
-ansible-playbook evaluate_firmware_update.yml
+ansible-playbook evaluate_firmware_updates.yml
 ```
 
 ex: [root@awx firmware]# ansible-playbook --limit=openbmc -vv evaluate_firmware_update.yml
@@ -500,7 +500,7 @@ ex: [root@awx firmware]# ansible-playbook --limit=openbmc -vv evaluate_firmware_
 #### how to load images
 
 ```yml
-ansible-playbook -vv upload_firmwares.yml
+ansible-playbook -vv upload_firmware_updates.yml
 ```
 
 #### how to update all firmwares from a TS
@@ -744,12 +744,11 @@ you can now generate as many encrypted password variables as needed and play you
 2. check that each line has the following structure  
   
 a_named_variable: !vault |  
-          $ANSIBLE_VAULT;1.2;AES256;bullsequana_edge_password  
+          $ANSIBLE_VAULT;1.2;;bullsequana_edge_password  
           39386331646338393630313334653231613236663132336564303639376236303833396134356439  
           6239356466383964643137326262613031363137643532310a386333353463643435303562376261  
           35613934333862613233393264383066356433323161653439333066633061356639356130623734  
-          6366316134333465330a383938643461366634353336366138363236383239366135376231616634  
-          3737  
+          6366316134333465330a383938643461366634353336366138363236383239366135376231616634   
   
 3. remove the lines that are corrupted  
 ![alt text](doc/corrupted_passwords.png)
@@ -784,5 +783,4 @@ You can use the directory ansible/openbmc to add your own playbooks at your own 
 This project is licensed under GPL-3.0 License. Please see the [COPYING](../COPYING.md) for more information
 
 ## <a name="version"></a>Version
-BullSequana Edge/SH System Management Playbook version 1.0.11
-MISM_BULLSEQUANA_EDGE_PLAYBOOKS_VERSION=1.0.11
+PFMCLI Version v1.0.0 

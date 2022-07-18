@@ -1,0 +1,27 @@
+---
+- hosts: all
+  name: Get Partition Information
+  connection: local
+  gather_facts: False
+  vars_files:
+    - vars/passwords.yml
+
+  tasks:
+
+  - include_tasks: utils_create_token.yml
+
+  - name: Get partition information
+    uri:
+      url: https://{{ baseuri }}/redfish/v1/Systems/system/Oem/Atos_net/PartitionInfo
+      method: GET
+      validate_certs: no
+      headers:
+        X-Auth-Token: "{{ x_token }}"
+    register: result
+
+  - debug:
+      var: result
+      verbosity: 2
+  
+  - debug:
+      var: result.json

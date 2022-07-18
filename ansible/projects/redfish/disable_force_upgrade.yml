@@ -1,0 +1,29 @@
+---
+- hosts: all
+  connection: local
+  name: Disable ForceUpgrade
+  gather_facts: False
+  vars_files:
+    - vars/external_vars.yml
+    - vars/passwords.yml
+
+  tasks:
+
+  - include_tasks: utils_create_token.yml
+
+  - name: Set ForceUpgrade=false
+    uri:
+      url: https://{{ baseuri }}/redfish/v1/UpdateService
+      method: PATCH
+      status_code: 200
+      body: '{ "Oem": { "Atos_net": { "ManualUpgrade": false, "ForceUpgrade": false } } }'
+      validate_certs: no
+      timeout: 60
+      headers:
+        Content-Type: "application/json"
+        X-Auth-Token: "{{ x_token }}"
+    register: result_ForceUpgrade
+
+  - debug:
+      var: result_ForceUpgrade
+      verbosity: 2

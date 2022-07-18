@@ -1,6 +1,6 @@
  ---
 - hosts: all
-  name: Activate Firmwares
+  name: Activate Firmware Updates
   connection: local
   gather_facts: False
   vars_files:
@@ -16,7 +16,7 @@
 
   - include_tasks: should_poweroff.yml
 
-  - include_tasks: utils_active_firmwares.yml
+  - include_tasks: utils_activate_firmware_updates.yml
 
   - include_tasks: should_reboot.yml
 

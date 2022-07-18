@@ -1,0 +1,24 @@
+---
+- hosts: all
+  connection: local
+  name: Get ForceUpgrade
+  gather_facts: False
+  vars_files:
+    - vars/external_vars.yml
+    - vars/passwords.yml
+
+  tasks:
+
+  - include_tasks: utils_create_token.yml
+
+  - name: Get ForceUpgrade setting
+    uri:
+      url: https://{{ baseuri }}/redfish/v1/UpdateService
+      method: GET
+      validate_certs: no
+      headers:
+        X-Auth-Token: "{{ x_token }}"
+    register: result
+
+  - debug:
+      var: result.json.Oem

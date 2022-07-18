@@ -1,12 +1,12 @@
 ---
 - hosts: all
   connection: local
-  name: Shutdown system power gracefully 
+  name: Shutdown system power gracefully
   gather_facts: False
   vars_files:
     - vars/external_vars.yml
     - vars/passwords.yml
-  
+
   tasks:
 
   - name: validate poweroff_countdown variable
@@ -22,6 +22,8 @@
     when: poweroff_countdown is defined
     run_once: true
 
-  - include_tasks: utils_system_power_off.yml    
+  - include_tasks: utils_create_token.yml
 
-  - include_tasks: wait_until_system_power_off.yml   
+  - include_tasks: utils_system_power_off.yml
+
+  - include_tasks: wait_until_system_power_off.yml

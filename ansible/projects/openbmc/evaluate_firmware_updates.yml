@@ -1,13 +1,13 @@
 ---
 - hosts: all
-  name: Firmware Update
+  name: Evaluate Firmwares to Update
   connection: local
   gather_facts: False
   vars_files:
     - vars/external_vars.yml
-
+ 
   tasks:
-  - name: Validate technical_state_path variable
+  - name: Assert technical_state_path variable
     assert:
       that:
         - technical_state_path is defined
@@ -22,9 +22,5 @@
 
   - include_tasks: utils_create_token.yml
 
-  - include_tasks: utils_firmware_inventory.yml
-
   - include_tasks: utils_evaluate_firmware_updates.yml
-
-  - include_tasks: utils_upload_firmware_updates.yml
 

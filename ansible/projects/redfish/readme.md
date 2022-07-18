@@ -1,9 +1,9 @@
 # BullSequana SH Ansible Playbooks
 ## <a name="playbooks"></a>BullSequana Playbooks
-- `disable_ssh.yml`: Disable the SSH mode 
 - `disable_chassis_indicator_led.yml`: Disable chassis indicator LED
-- `enable_ssh.yml`: Enable the SSH mode 
+- `disable_force_upgrade`: Turn off ForceUpgrade option
 - `enable_chassis_indicator_led.yml`: Enable chassis indicator LED
+- `enable_force_upgrade`: Turn on ForceUpgrade option
 - `get_boot_options.yml`: Get boot options 
 - `get_chassis.yml`: Get all chassis details 
 - `get_chassis_fan.yml`: Get chassis fan 
@@ -12,11 +12,13 @@
 - `get_chassis_inventory.yml`: Get chassis inventory
 - `get_chassis_thermals.yml`: Get chassis thermals
 - `get_cpu_inventory.yml`: Get cpu inventory
+- `get_force_upgrade`: Get setting of ForceUpgrade option
 - `get_log_services.yml`: Get log services
 - `get_manager_all_info.yml`: Get manager all info
 - `get_manager_nic_inventory.yml`: Get manager nic inventory
 - `get_memory_inventory.yml`: Get memory inventory
 - `get_networks.yml`: Get network info
+- `get_partition.yml`: Get partition information
 - `get_session_information.yml`: Get session information
 - `get_system.yml`: Get system
 - `get_system_power.yml`: Get system power state

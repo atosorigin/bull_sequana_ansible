@@ -60,18 +60,49 @@
   - set_fact: 
       push_uri: "{{ result_push_uri.json.HttpPushUri }}"
 
-  - name: Upload with ApplyTime=OnReset Firmware Image
-    uri:
-      url: https://{{ baseuri }}{{ push_uri }}
-      src: "{{ file_to_upload }}"
-      method: POST
-      validate_certs: no
-      timeout: "{{ post_timeout }}"
-      status_code: 202
-      headers:
-        Content-Type: "application/octet-stream"
-        X-Auth-Token: "{{ x_token }}"
-    register: result_upload
+# Upload can fail with ResourceAlreadyExists, InvalidUpload, etc.
+  - name: Handle Upload error
+    block:
+      - name: Upload with ApplyTime=OnReset Firmware Image
+        uri:
+          url: https://{{ baseuri }}{{ push_uri }}
+          src: "{{ file_to_upload }}"
+          method: POST
+          validate_certs: no
+          timeout: "{{ post_timeout }}"
+          status_code: 202
+          headers:
+            Content-Type: "application/octet-stream"
+            X-Auth-Token: "{{ x_token }}"
+        register: result_upload
+    
+    rescue:
+
+    # error ocurred during Upload
+      - name: Print that Upload error occurred
+        debug:
+          msg: "Error detected during Upload request"
+
+      - name: print result_upload
+        debug:
+          var: result_upload
+
+      - name: print result_upload.json
+        debug:
+          var: result_upload.json
+
+      - name: extract MessageId and Message
+        set_fact:
+          MessageId: "{{ result_upload.json.error['@Message.ExtendedInfo'][0].MessageId }}"
+          Message: "{{ result_upload.json.error['@Message.ExtendedInfo'][0].Message }}"
+
+      - name: display MessageId
+        debug:
+          var: MessageId
+      
+      - name: Terminate the playbook
+        fail:
+          msg: "Upload failed with MessageId: {{ MessageId }}\nMessage: {{ Message }}"
 
   - debug:
       var: result_upload

@@ -12,13 +12,13 @@
 
   - include_tasks: utils_create_token.yml
 
-  - include_tasks: utils_evaluate_firmwares.yml
+  - include_tasks: utils_evaluate_firmware_updates.yml
 
-  - include_tasks: utils_upload_firmwares.yml
+  - include_tasks: utils_upload_firmware_updates.yml
 
   - include_tasks: should_poweroff.yml
 
-  - include_tasks: utils_active_firmwares.yml
+  - include_tasks: utils_activate_firmware_updates.yml
 
   - include_tasks: should_reboot.yml
 

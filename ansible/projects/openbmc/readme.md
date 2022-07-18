@@ -1,12 +1,12 @@
 # BullSequana Edge Ansible Playbooks
 ## <a name="playbooks"></a>BullSequana Playbooks
-- `activate_firmwares.yml`: Activate BullSequana Edge/SH uploaded firmwares - The playbook DOES NOT upload firmwares (It is needed to plan the image upload before)
+- `activate_firmware_updates.yml`: Activate BullSequana Edge/SH uploaded firmwares - The playbook DOES NOT upload firmwares (It is needed to plan the image upload before)
 - `bmc_reboot.yml`: Reboot the BMC
 - `check_<alarms/states>.yml`: Check an alarm or a state
 - `delete_firmware_image.yml`: Delete a firmware image by version/purpose
 - `enable_ssh.yml/disable_ssh.yml`: enable / disable SSH protocol 
 - `enable_tpm.yml/disable_tpm.yml`: enable / disable TPM 
-- `evaluate_firmware_update .yml`: Evaluate firmware update from Atos specific Technical State file (comparaison)
+- `evaluate_firmware_updates.yml`: Evaluate firmwares to update from Atos specific Technical State file (comparaison)
 - `get_active_firmware_inventory.yml`: Get firmware inventory in "Active" state
 - `get_ready_firmware_inventory.yml`: Get firmware inventory in "Ready" state
 - `get_bios_boot_<mode or source>.yml`: Get current BIOS Boot Mode / Source

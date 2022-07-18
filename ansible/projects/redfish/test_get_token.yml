@@ -1,0 +1,19 @@
+---
+- hosts: all
+  connection: local
+  name: Get auth token
+  gather_facts: False
+  vars_files:
+    - vars/passwords.yml
+  
+  tasks:
+
+  - include_tasks: utils_create_token.yml
+
+  - name: Display token
+    debug:
+      var: x_token
+  
+  - name: Display use case for subsequent actions
+    debug:
+      msg: "Example Usage:\nexport token={{ x_token }}"

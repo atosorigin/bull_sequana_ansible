@@ -2,6 +2,7 @@
 
 # Define if force off is allowed during update
 forceoff: false
+
 # Define if reboot is allowed during update
 reboot: true
 # Define the power cap limit
@@ -20,7 +21,7 @@ technical_state_path: /mnt
 rsyslog_server_port: 514
 # File to upload with update_firmware_from_file.yml playbook
 # no default value
-# file_to_upload: OMF_CEB_65_00_0803.tar
+# file_to_upload: ~/firmware/OMF_CEB_73_00_0847.tar
 
 # url timeout when posting (update firmware)
 post_timeout: 120

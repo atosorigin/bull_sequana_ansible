@@ -1,5 +1,4 @@
 # Set a path to a Bull Technical State file
-# technical_state_path: /mnt
 technical_state_path: /var/bull_ansible/tests
 # Define rsyslog ip
 # rsyslog_server_ip: 
